@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/az.murad.mallRestaurant.main.iml" filepath="$PROJECT_DIR$/.idea/modules/az.murad.mallRestaurant.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/mallRestaurant.iml" filepath="$PROJECT_DIR$/.idea/mallRestaurant.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/mallRestaurant.mallRestaurant.main.iml" filepath="$PROJECT_DIR$/.idea/modules/mallRestaurant.mallRestaurant.main.iml" />
+    </modules>
+  </component>
+</project>
