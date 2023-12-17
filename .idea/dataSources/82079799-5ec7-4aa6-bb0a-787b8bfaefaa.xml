@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="MuradDb localhost:27017 [direct]">
+  <database-model serializer="dbm" dbms="MONGO" family-id="MONGO" format-version="4.49">
+    <root id="1">
+      <ServerVersion>7.0.4</ServerVersion>
+    </root>
+    <schema id="2" parent="1" name="MyRestaurantApp">
+      <LocalIntrospectionTimestamp>2023-12-15.13:06:52</LocalIntrospectionTimestamp>
+    </schema>
+    <schema id="3" parent="1" name="admin"/>
+    <schema id="4" parent="1" name="config"/>
+    <schema id="5" parent="1" name="local"/>
+    <table id="6" parent="2" name="foodItem"/>
+    <table id="7" parent="2" name="user"/>
+    <column id="8" parent="6" name="_id">
+      <DasType>ObjectId|12s</DasType>
+      <Position>1</Position>
+    </column>
+    <column id="9" parent="6" name="category">
+      <DasType>String|12s</DasType>
+      <Position>1</Position>
+    </column>
+    <column id="10" parent="6" name="restaurantName">
+      <DasType>String|12s</DasType>
+      <Position>1</Position>
+    </column>
+    <column id="11" parent="6" name="imageUrl">
+      <DasType>String|12s</DasType>
+      <Position>1</Position>
+    </column>
+    <column id="12" parent="6" name="_class">
+      <DasType>String|12s</DasType>
+      <Position>2</Position>
+    </column>
+    <column id="13" parent="6" name="cost">
+      <DasType>Double|8s</DasType>
+      <Position>2</Position>
+    </column>
+    <column id="14" parent="6" name="name">
+      <DasType>String|12s</DasType>
+      <Position>2</Position>
+    </column>
+    <column id="15" parent="6" name="star">
+      <DasType>Int32|4s</DasType>
+      <Position>2</Position>
+    </column>
+    <column id="16" parent="6" name="createDate">
+      <DasType>ISODate|91s</DasType>
+      <Position>3</Position>
+    </column>
+    <column id="17" parent="6" name="time">
+      <DasType>Int32|4s</DasType>
+      <Position>3</Position>
+    </column>
+    <column id="18" parent="7" name="_id">
+      <DasType>ObjectId|12s</DasType>
+      <Position>1</Position>
+    </column>
+    <column id="19" parent="7" name="_class">
+      <DasType>String|12s</DasType>
+      <Position>1</Position>
+    </column>
+    <column id="20" parent="7" name="email">
+      <DasType>String|12s</DasType>
+      <Position>1</Position>
+    </column>
+    <column id="21" parent="7" name="password">
+      <DasType>String|12s</DasType>
+      <Position>1</Position>
+    </column>
+    <column id="22" parent="7" name="username">
+      <DasType>String|12s</DasType>
+      <Position>1</Position>
+    </column>
+  </database-model>
+</dataSource>

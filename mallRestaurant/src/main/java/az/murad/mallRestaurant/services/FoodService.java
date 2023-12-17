@@ -1,52 +1,71 @@
 package az.murad.mallRestaurant.services;
 
 import az.murad.mallRestaurant.model.FoodItem;
+import az.murad.mallRestaurant.repository.FoodRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
+
 @Service
 public class FoodService {
 
-    private final List<FoodItem> foodItems = new ArrayList<>();
-    private int nextId = 1;
+    private final FoodRepository foodRepository;
+
+
+    public FoodService(FoodRepository foodRepository) {
+        this.foodRepository = foodRepository;
+    }
 
     public List<FoodItem> getAllFoodItems() {
-        return foodItems;
+        return foodRepository.findAll();
     }
 
     public FoodItem getFoodItemById(String id) {
-        return foodItems.stream()
-                .filter(f -> f.getId().equals(id))
-                .findFirst()
-                .orElse(null);
+        return foodRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Food not found with id: " + id));
     }
 
-
-    public FoodItem createFoodItem(FoodItem foodItem) {
-        foodItem.setId(String.valueOf(nextId));
-        foodItems.add(foodItem);
-        nextId++; // Increment the ID for the next item
-        return foodItem;
+    public FoodItem createFoodItem(FoodItem newFoodItem) {
+        return foodRepository.save(newFoodItem);
     }
 
     public FoodItem updateFoodItem(String id, FoodItem updatedFoodItem) {
-        for (int i = 0; i < foodItems.size(); i++) {
-            FoodItem food = foodItems.get(i);
-            if (food.getId().equals(id)) {
-                // Update all properties with the new values
-                food.setName(updatedFoodItem.getName());
-                food.setCost(updatedFoodItem.getCost());
-                food.setStar(updatedFoodItem.getStar());
-                food.setTime(updatedFoodItem.getTime());
-                food.setCategory(updatedFoodItem.getCategory());
-                return food;
-            }
+        FoodItem existingFoodItem = foodRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Food not found with id: " + id));
+
+        // Apply updates only to non-null fields
+        if (updatedFoodItem.getName() != null) {
+            existingFoodItem.setName(updatedFoodItem.getName());
         }
-        return null; // Food item with the given ID doesn't exist
+        if (updatedFoodItem.getRestaurantName() != null) {
+            existingFoodItem.setRestaurantName(updatedFoodItem.getRestaurantName());
+        }
+        if (updatedFoodItem.getCost() != 0) {
+            existingFoodItem.setCost(updatedFoodItem.getCost());
+        }
+        if (updatedFoodItem.getStar() != 0) {
+            existingFoodItem.setStar(updatedFoodItem.getStar());
+        }
+        if (updatedFoodItem.getTime() != 0) {
+            existingFoodItem.setTime(updatedFoodItem.getTime());
+        }
+        if (updatedFoodItem.getCategory() != null) {
+            existingFoodItem.setCategory(updatedFoodItem.getCategory());
+        }
+        if (updatedFoodItem.getImageUrl() != null) {
+            existingFoodItem.setImageUrl(updatedFoodItem.getImageUrl());
+        }
+
+        // Save the updated food item
+        return foodRepository.save(existingFoodItem);
     }
 
-    public boolean deleteFoodItem(String id) {
-        return foodItems.removeIf(foodItem -> foodItem.getId().equals(id));
+
+
+    public void deleteFoodItem(String id) {
+        foodRepository.deleteById(id);
     }
+
+
+    // Additional methods...
 }

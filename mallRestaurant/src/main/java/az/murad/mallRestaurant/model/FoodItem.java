@@ -3,17 +3,25 @@ package az.murad.mallRestaurant.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+
+import java.util.Date;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class FoodItem {
+
+    @Id
     private String id; // Use String for ID
+
+    private Date createDate = new Date();
+    private String restaurantName; // Restaurant name
+    private String category;
     private String name;
-    private double cost; // Cost of the food item
-    private int star; // Star rating for the food item
-    private int time; // Preparation time in minutes
-    private String category; // Category of the food item
-    // Other food item properties, getters, and setters
+    private double cost;
+    private int star;
+    private int time;
+    private String imageUrl;
 }
 

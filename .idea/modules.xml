@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/az.murad.mallRestaurant.main.iml" filepath="$PROJECT_DIR$/.idea/modules/az.murad.mallRestaurant.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/mallRestaurant.iml" filepath="$PROJECT_DIR$/.idea/mallRestaurant.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/mallRestaurant.mallRestaurant.main.iml" filepath="$PROJECT_DIR$/.idea/modules/mallRestaurant.mallRestaurant.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/mallRestaurant.main.iml" filepath="$PROJECT_DIR$/.idea/modules/mallRestaurant.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/sdf2-for-murad-MuradIbrahimov.iml" filepath="$PROJECT_DIR$/.idea/sdf2-for-murad-MuradIbrahimov.iml" />
     </modules>
   </component>
 </project>
