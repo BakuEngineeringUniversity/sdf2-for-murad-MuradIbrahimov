@@ -1,11 +1,10 @@
 package az.murad.mallRestaurant.services;
 
-import az.murad.mallRestaurant.model.User;
+import az.murad.mallRestaurant.entity.User;
 import az.murad.mallRestaurant.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
@@ -17,6 +16,11 @@ public class UserService {
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+    }
+
+    public User getUserByUsername(String username) {
+        return userRepository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("User not found with username: " + username));
     }
 
     public List<User> getAllUsers() {

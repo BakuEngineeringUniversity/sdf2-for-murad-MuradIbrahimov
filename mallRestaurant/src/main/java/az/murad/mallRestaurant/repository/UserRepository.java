@@ -1,10 +1,12 @@
 package az.murad.mallRestaurant.repository;
 
-import az.murad.mallRestaurant.model.User;
+import az.murad.mallRestaurant.entity.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
+import java.util.Optional;
+
 public interface UserRepository extends MongoRepository<User, String> {
-    // Spring Data JPA will automatically create a query for this method
     User findByEmailAndPassword(String email, String password);
 
+    Optional<User> findByUsername(String username);
 }

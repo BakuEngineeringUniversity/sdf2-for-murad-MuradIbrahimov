@@ -1,5 +1,4 @@
-package az.murad.mallRestaurant.model;
-
+package az.murad.mallRestaurant.entity;
 
 import lombok.Data;
 

@@ -1,13 +1,13 @@
 package az.murad.mallRestaurant.controller;
 
+import az.murad.mallRestaurant.Util.JwtUtil;
 import az.murad.mallRestaurant.exception.LoginFailedException;
-import az.murad.mallRestaurant.model.LoginRequest;
-import az.murad.mallRestaurant.model.LoginResponse;
-import az.murad.mallRestaurant.model.User;
+import az.murad.mallRestaurant.entity.LoginRequest;
+import az.murad.mallRestaurant.entity.LoginResponse;
+import az.murad.mallRestaurant.entity.User;
 import az.murad.mallRestaurant.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,20 +21,24 @@ public class LoginController {
     private final Logger logger = LoggerFactory.getLogger(LoginController.class);
     private final UserRepository userRepository;
 
-    public LoginController(UserRepository userRepository) {
+    private final JwtUtil jwtUtil;
+
+    public LoginController(UserRepository userRepository, JwtUtil jwtUtil) {
         this.userRepository = userRepository;
+        this.jwtUtil = jwtUtil;
     }
 
     @PostMapping
     public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest) {
+
         logger.info("Received login request: {}", loginRequest);
 
         try {
             User user = userRepository.findByEmailAndPassword(loginRequest.getEmail(), loginRequest.getPassword());
 
             if (user != null) {
-                logger.info("Login successful for User with id: {}", user.getId());
-                LoginResponse response = new LoginResponse("Login successful for User with id: " + user.getId(), user.getId());
+                String token = jwtUtil.generateToken(user.getUsername(), user.getRole());
+                LoginResponse response = new LoginResponse("Login successful", user.getId(), token);
                 return ResponseEntity.ok(response);
             } else {
                 logger.warn("User not found for login request: {}", loginRequest);
