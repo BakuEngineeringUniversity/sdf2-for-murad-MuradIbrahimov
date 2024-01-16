@@ -1,6 +1,6 @@
 package az.murad.mallRestaurant.services;
 
-import az.murad.mallRestaurant.entity.User;
+import az.murad.mallRestaurant.Entity.User;
 import az.murad.mallRestaurant.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

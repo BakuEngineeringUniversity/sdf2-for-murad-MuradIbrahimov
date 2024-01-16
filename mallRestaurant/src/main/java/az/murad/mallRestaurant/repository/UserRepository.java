@@ -1,6 +1,6 @@
 package az.murad.mallRestaurant.repository;
 
-import az.murad.mallRestaurant.entity.User;
+import az.murad.mallRestaurant.Entity.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.Optional;

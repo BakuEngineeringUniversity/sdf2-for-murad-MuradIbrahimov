@@ -1,7 +1,7 @@
 package az.murad.mallRestaurant.controller;
 
 import az.murad.mallRestaurant.Util.JwtUtil;
-import az.murad.mallRestaurant.entity.User;
+import az.murad.mallRestaurant.Entity.User;
 import az.murad.mallRestaurant.services.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -75,7 +75,7 @@ public class UserController {
     }
 
     @PostMapping
-    @PreAuthorize("hasRole('ROLE_ADMIN')")  // Example: Only users with 'ROLE_ADMIN' can access this endpoint
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<User> createUser(@RequestBody User newUser, @RequestHeader("Authorization") String token) {
         // Validate token and check user role
         String username = jwtUtil.getUsernameFromToken(token);

@@ -2,9 +2,9 @@ package az.murad.mallRestaurant.controller;
 
 import az.murad.mallRestaurant.Util.JwtUtil;
 import az.murad.mallRestaurant.exception.LoginFailedException;
-import az.murad.mallRestaurant.entity.LoginRequest;
-import az.murad.mallRestaurant.entity.LoginResponse;
-import az.murad.mallRestaurant.entity.User;
+import az.murad.mallRestaurant.Entity.LoginRequest;
+import az.murad.mallRestaurant.Entity.LoginResponse;
+import az.murad.mallRestaurant.Entity.User;
 import az.murad.mallRestaurant.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

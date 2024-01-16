@@ -1,6 +1,6 @@
 package az.murad.mallRestaurant.controller;
 
-import az.murad.mallRestaurant.entity.FoodItem;
+import az.murad.mallRestaurant.Entity.FoodItem;
 import az.murad.mallRestaurant.services.FoodService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

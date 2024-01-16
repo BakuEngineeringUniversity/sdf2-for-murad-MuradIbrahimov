@@ -1,6 +1,6 @@
 package az.murad.mallRestaurant.services;
 
-import az.murad.mallRestaurant.entity.FoodItem;
+import az.murad.mallRestaurant.Entity.FoodItem;
 import az.murad.mallRestaurant.repository.FoodRepository;
 import org.springframework.stereotype.Service;
 

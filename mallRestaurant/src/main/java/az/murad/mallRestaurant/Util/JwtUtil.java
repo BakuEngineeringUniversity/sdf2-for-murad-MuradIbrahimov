@@ -19,25 +19,35 @@ public class JwtUtil {
     @Value("${jwt.expirationMs}")
     private long expirationMs;
 
-    private final SecretKey secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS512);
+    private final SecretKey secretKey = Keys.hmacShaKeyFor(secret.getBytes());
 
     public String generateToken(String username, String password) {
         return Jwts.builder()
                 .setSubject(username)
                 .claim("password", password)
                 .setIssuedAt(new Date())
+                .setExpiration(new Date(System.currentTimeMillis() + expirationMs))
                 .signWith(secretKey, SignatureAlgorithm.HS512)
                 .compact();
     }
 
     public String getUsernameFromToken(String token) {
-        Claims claims = Jwts.parser()
-                .setSigningKey(secret)
-                .parseClaimsJws(token)
-                .getBody();
+        try {
+            Claims claims = Jwts.parser()
+                    .setSigningKey(secretKey)
+                    .parseClaimsJws(token)
+                    .getBody();
 
-        return claims.getSubject();
+            Date expiration = claims.getExpiration();
+            if (expiration != null && expiration.after(new Date())) {
+                return claims.getSubject();
+            }
+        } catch (Exception e) {
+            // Handle parsing or expired token exception
+        }
+
+        return null; // Invalid token or expired
     }
 
-    // Add methods for token validation, expiration check, etc.
+    // Add methods for additional token validation, expiration check, etc.
 }

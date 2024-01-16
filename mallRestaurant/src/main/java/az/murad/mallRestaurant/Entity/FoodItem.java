@@ -1,4 +1,4 @@
-package az.murad.mallRestaurant.entity;
+package az.murad.mallRestaurant.Entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
