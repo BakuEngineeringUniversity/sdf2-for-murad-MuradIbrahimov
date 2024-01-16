@@ -14,12 +14,12 @@ import static org.springframework.http.HttpStatus.OK;
 
 @RestController
 @RequestMapping("/api/foods")
-public class FoodController {
+public class ProductController {
 
     private final FoodService foodService;
-    private static final Logger logger = LoggerFactory.getLogger(FoodController.class);
+    private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
 
-    public FoodController(FoodService foodService) {
+    public ProductController(FoodService foodService) {
         this.foodService = foodService;
     }
 

@@ -5898,7 +5898,7 @@ javax.management.InstanceNotFoundException: org.springframework.boot:type=Admin,
 18:22:02.127 [main] TRACE o.s.b.f.s.DefaultListableBeanFactory - Returning cached instance of singleton bean 'org.springframework.aop.config.internalAutoProxyCreator'
 18:22:02.129 [main] TRACE o.s.c.e.EventListenerMethodProcessor - No @EventListener annotations found on bean class: az.murad.mallRestaurant.MallRestaurantApplication$$EnhancerBySpringCGLIB$$e82d7ac0
 18:22:02.129 [main] TRACE o.s.c.e.EventListenerMethodProcessor - No @EventListener annotations found on bean class: az.murad.mallRestaurant.configs.SecurityConfig$$EnhancerBySpringCGLIB$$f2da810e
-18:22:02.129 [main] TRACE o.s.c.e.EventListenerMethodProcessor - No @EventListener annotations found on bean class: az.murad.mallRestaurant.controller.FoodController
+18:22:02.129 [main] TRACE o.s.c.e.EventListenerMethodProcessor - No @EventListener annotations found on bean class: az.murad.mallRestaurant.controller.ProductController
 18:22:02.129 [main] TRACE o.s.c.e.EventListenerMethodProcessor - No @EventListener annotations found on bean class: az.murad.mallRestaurant.controller.LoginController
 18:22:02.129 [main] TRACE o.s.c.e.EventListenerMethodProcessor - No @EventListener annotations found on bean class: az.murad.mallRestaurant.controller.UserController
 18:22:02.129 [main] TRACE o.s.c.e.EventListenerMethodProcessor - No @EventListener annotations found on bean class: az.murad.mallRestaurant.exception.GlobalExceptionHandler
