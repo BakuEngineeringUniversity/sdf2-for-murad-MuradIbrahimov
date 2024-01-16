@@ -8,17 +8,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logs/mymall.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/mymall.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mallRestaurant/src/main/java/az/murad/mallRestaurant/Util/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/mallRestaurant/src/main/java/az/murad/mallRestaurant/Util/JwtUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mallRestaurant/src/main/java/az/murad/mallRestaurant/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/mallRestaurant/src/main/java/az/murad/mallRestaurant/controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mallRestaurant/src/main/java/az/murad/mallRestaurant/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/mallRestaurant/src/main/java/az/murad/mallRestaurant/controller/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mallRestaurant/src/main/java/az/murad/mallRestaurant/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/mallRestaurant/src/main/java/az/murad/mallRestaurant/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mallRestaurant/src/main/java/az/murad/mallRestaurant/entity/FoodItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/mallRestaurant/src/main/java/az/murad/mallRestaurant/Entity/FoodItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mallRestaurant/src/main/java/az/murad/mallRestaurant/entity/LoginRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/mallRestaurant/src/main/java/az/murad/mallRestaurant/Entity/LoginRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mallRestaurant/src/main/java/az/murad/mallRestaurant/entity/LoginResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/mallRestaurant/src/main/java/az/murad/mallRestaurant/Entity/LoginResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mallRestaurant/src/main/java/az/murad/mallRestaurant/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/mallRestaurant/src/main/java/az/murad/mallRestaurant/Entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mallRestaurant/src/main/java/az/murad/mallRestaurant/repository/FoodRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/mallRestaurant/src/main/java/az/murad/mallRestaurant/repository/FoodRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mallRestaurant/src/main/java/az/murad/mallRestaurant/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/mallRestaurant/src/main/java/az/murad/mallRestaurant/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mallRestaurant/src/main/java/az/murad/mallRestaurant/services/FoodService.java" beforeDir="false" afterPath="$PROJECT_DIR$/mallRestaurant/src/main/java/az/murad/mallRestaurant/services/FoodService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mallRestaurant/src/main/java/az/murad/mallRestaurant/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/mallRestaurant/src/main/java/az/murad/mallRestaurant/services/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mallRestaurant/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/mallRestaurant/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +46,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
@@ -125,7 +115,7 @@
       <workItem from="1705326005053" duration="967000" />
       <workItem from="1705426189674" duration="728000" />
       <workItem from="1705429663146" duration="7103000" />
-      <workItem from="1705439454710" duration="1680000" />
+      <workItem from="1705439454710" duration="2208000" />
     </task>
     <servers />
   </component>

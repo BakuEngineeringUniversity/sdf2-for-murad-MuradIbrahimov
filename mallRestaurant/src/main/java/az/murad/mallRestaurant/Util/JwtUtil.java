@@ -13,13 +13,10 @@ import java.util.Date;
 @Component
 public class JwtUtil {
 
-    @Value("${jwt.secret}")
-    private String secret;
-
     @Value("${jwt.expirationMs}")
     private long expirationMs;
 
-    private final SecretKey secretKey = Keys.hmacShaKeyFor(secret.getBytes());
+    private final SecretKey secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS512);
 
     public String generateToken(String username, String password) {
         return Jwts.builder()
@@ -38,15 +35,12 @@ public class JwtUtil {
                     .parseClaimsJws(token)
                     .getBody();
 
-            Date expiration = claims.getExpiration();
-            if (expiration != null && expiration.after(new Date())) {
-                return claims.getSubject();
-            }
+            return claims.getSubject();
         } catch (Exception e) {
-            // Handle parsing or expired token exception
+            // Log the exception for debugging
+            e.printStackTrace();
+            throw new RuntimeException("Error decoding JWT token");
         }
-
-        return null; // Invalid token or expired
     }
 
     // Add methods for additional token validation, expiration check, etc.
