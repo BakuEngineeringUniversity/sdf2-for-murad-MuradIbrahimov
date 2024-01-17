@@ -7,9 +7,7 @@
     <list default="true" id="099ea5ea-eb5f-4aa3-a53b-5e351adde2bc" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mallRestaurant/src/main/java/az/murad/mallRestaurant/Entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/mallRestaurant/src/main/java/az/murad/mallRestaurant/Entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mallRestaurant/src/main/java/az/murad/mallRestaurant/Util/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/mallRestaurant/src/main/java/az/murad/mallRestaurant/Util/JwtUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mallRestaurant/src/main/java/az/murad/mallRestaurant/configs/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/mallRestaurant/src/main/java/az/murad/mallRestaurant/configs/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mallRestaurant/src/main/java/az/murad/mallRestaurant/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/mallRestaurant/src/main/java/az/murad/mallRestaurant/controller/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mallRestaurant/src/main/java/az/murad/mallRestaurant/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/mallRestaurant/src/main/java/az/murad/mallRestaurant/services/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -118,7 +116,7 @@
       <workItem from="1705426189674" duration="728000" />
       <workItem from="1705429663146" duration="7103000" />
       <workItem from="1705439454710" duration="2787000" />
-      <workItem from="1705477871057" duration="1798000" />
+      <workItem from="1705477871057" duration="2717000" />
     </task>
     <servers />
   </component>

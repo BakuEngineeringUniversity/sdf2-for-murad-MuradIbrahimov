@@ -30,7 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/users/guest").permitAll() // Allow unauthenticated access to create guest user
+                .antMatchers("/api/users/guest").permitAll() // Allow unauthenticated access to create a guest user
                 .antMatchers("/api/**").authenticated() // Secure other API endpoints
                 .anyRequest().authenticated()
                 .and()
@@ -39,10 +39,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .httpBasic();
     }
 
-    @Bean
     @Override
+    @Bean
     public UserDetailsService userDetailsService() {
-        return userService::getUserByUsername;
+        return userService;
     }
 
     @Bean

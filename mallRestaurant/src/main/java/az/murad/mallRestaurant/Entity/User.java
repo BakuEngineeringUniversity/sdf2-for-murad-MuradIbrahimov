@@ -18,7 +18,11 @@ public class User {
     private String email;
 
     private String role;
-    private boolean isGuest; // New field
+    private boolean isGuest;
 
     // Additional user attributes, getters, and setters
+
+    public void setIsGuest(boolean isGuest) {
+        this.isGuest = isGuest;
+    }
 }
