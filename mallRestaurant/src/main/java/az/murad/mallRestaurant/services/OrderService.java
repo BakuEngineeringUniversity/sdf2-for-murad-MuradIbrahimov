@@ -60,5 +60,14 @@ public class OrderService {
         return orderRepository.findByRestaurantName(restaurantName);
     }
 
+    public boolean deleteOrder(String id) {
+        // Delete order by ID
+        if (orderRepository.existsById(id)) {
+            orderRepository.deleteById(id);
+            return true;
+        } else {
+            return false;
+        }
+    }
     // Additional methods...
 }

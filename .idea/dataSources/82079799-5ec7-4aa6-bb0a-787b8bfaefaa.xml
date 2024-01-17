@@ -5,70 +5,111 @@
       <ServerVersion>7.0.4</ServerVersion>
     </root>
     <schema id="2" parent="1" name="MyRestaurantApp">
-      <LocalIntrospectionTimestamp>2023-12-15.13:06:52</LocalIntrospectionTimestamp>
+      <LocalIntrospectionTimestamp>2024-01-17.21:41:23</LocalIntrospectionTimestamp>
     </schema>
     <schema id="3" parent="1" name="admin"/>
     <schema id="4" parent="1" name="config"/>
     <schema id="5" parent="1" name="local"/>
     <table id="6" parent="2" name="foodItem"/>
-    <table id="7" parent="2" name="user"/>
-    <column id="8" parent="6" name="_id">
+    <table id="7" parent="2" name="orders"/>
+    <table id="8" parent="2" name="user"/>
+    <column id="9" parent="6" name="_id">
       <DasType>ObjectId|12s</DasType>
       <Position>1</Position>
     </column>
-    <column id="9" parent="6" name="category">
+    <column id="10" parent="6" name="category">
       <DasType>String|12s</DasType>
       <Position>1</Position>
     </column>
-    <column id="10" parent="6" name="restaurantName">
+    <column id="11" parent="6" name="restaurantName">
       <DasType>String|12s</DasType>
       <Position>1</Position>
     </column>
-    <column id="11" parent="6" name="imageUrl">
+    <column id="12" parent="6" name="imageUrl">
       <DasType>String|12s</DasType>
       <Position>1</Position>
     </column>
-    <column id="12" parent="6" name="_class">
+    <column id="13" parent="6" name="name">
+      <DasType>String|12s</DasType>
+      <Position>1</Position>
+    </column>
+    <column id="14" parent="6" name="star">
+      <DasType>Int32|4s</DasType>
+      <Position>1</Position>
+    </column>
+    <column id="15" parent="6" name="time">
+      <DasType>Int32|4s</DasType>
+      <Position>1</Position>
+    </column>
+    <column id="16" parent="6" name="_class">
       <DasType>String|12s</DasType>
       <Position>2</Position>
     </column>
-    <column id="13" parent="6" name="cost">
+    <column id="17" parent="6" name="cost">
       <DasType>Double|8s</DasType>
       <Position>2</Position>
     </column>
-    <column id="14" parent="6" name="name">
-      <DasType>String|12s</DasType>
-      <Position>2</Position>
-    </column>
-    <column id="15" parent="6" name="star">
-      <DasType>Int32|4s</DasType>
-      <Position>2</Position>
-    </column>
-    <column id="16" parent="6" name="createDate">
+    <column id="18" parent="6" name="createDate">
       <DasType>ISODate|91s</DasType>
       <Position>3</Position>
     </column>
-    <column id="17" parent="6" name="time">
-      <DasType>Int32|4s</DasType>
-      <Position>3</Position>
-    </column>
-    <column id="18" parent="7" name="_id">
+    <column id="19" parent="7" name="_id">
       <DasType>ObjectId|12s</DasType>
       <Position>1</Position>
     </column>
-    <column id="19" parent="7" name="_class">
+    <column id="20" parent="7" name="_class">
       <DasType>String|12s</DasType>
       <Position>1</Position>
     </column>
-    <column id="20" parent="7" name="email">
+    <column id="21" parent="7" name="foodItemId">
       <DasType>String|12s</DasType>
       <Position>1</Position>
     </column>
-    <column id="21" parent="7" name="password">
+    <column id="22" parent="7" name="quantity">
+      <DasType>Int32|4s</DasType>
+      <Position>1</Position>
+    </column>
+    <column id="23" parent="7" name="restaurantName">
       <DasType>String|12s</DasType>
       <Position>1</Position>
     </column>
-    <column id="22" parent="7" name="username">
+    <column id="24" parent="7" name="status">
+      <DasType>String|12s</DasType>
+      <Position>1</Position>
+    </column>
+    <column id="25" parent="7" name="totalCost">
+      <DasType>Double|8s</DasType>
+      <Position>1</Position>
+    </column>
+    <column id="26" parent="7" name="userId">
+      <DasType>String|12s</DasType>
+      <Position>2</Position>
+    </column>
+    <column id="27" parent="8" name="_id">
+      <DasType>ObjectId|12s</DasType>
+      <Position>1</Position>
+    </column>
+    <column id="28" parent="8" name="_class">
+      <DasType>String|12s</DasType>
+      <Position>1</Position>
+    </column>
+    <column id="29" parent="8" name="email">
+      <DasType>String|12s</DasType>
+      <Position>1</Position>
+    </column>
+    <column id="30" parent="8" name="password">
+      <DasType>String|12s</DasType>
+      <Position>1</Position>
+    </column>
+    <column id="31" parent="8" name="username">
+      <DasType>String|12s</DasType>
+      <Position>1</Position>
+    </column>
+    <column id="32" parent="8" name="isGuest">
+      <DasType>Boolean|12s</DasType>
+      <Position>1</Position>
+    </column>
+    <column id="33" parent="8" name="role">
       <DasType>String|12s</DasType>
       <Position>1</Position>
     </column>

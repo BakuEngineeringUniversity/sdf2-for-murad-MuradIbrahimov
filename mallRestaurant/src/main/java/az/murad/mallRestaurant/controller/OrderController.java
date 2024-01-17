@@ -121,4 +121,32 @@ public class OrderController {
         }
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteOrder(@PathVariable String id,
+                                              @RequestHeader("Authorization") String token) {
+        try {
+            // Validate token and check user role
+            String username = jwtUtil.getUsernameFromToken(token);
+            User user = userService.getUserByUsername(username);
+
+            if (user != null && (user.getRole().equals("ROLE_RESTAURANT") || user.getRole().equals("ROLE_ADMIN"))) {
+                // Access granted
+
+                // Delete order
+                boolean deleted = orderService.deleteOrder(id);
+
+                if (deleted) {
+                    return ResponseEntity.ok("Order deleted successfully");
+                } else {
+                    return ResponseEntity.notFound().build();
+                }
+            } else {
+                // Access denied
+                throw new AccessDeniedException("Access denied");
+            }
+        } catch (Exception e) {
+            // Log and handle exceptions
+            throw new RuntimeException("Error deleting order", e);
+        }
+    }
 }
