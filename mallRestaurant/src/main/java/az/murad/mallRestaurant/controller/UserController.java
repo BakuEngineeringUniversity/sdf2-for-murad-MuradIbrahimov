@@ -50,7 +50,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasRole('ROLE_USER2')")  // Example: Only users with 'ROLE_USER' can access this endpoint
+    @PreAuthorize("hasRole('ROLE_ADMIN')")  // Example: Only users with 'ROLE_USER' can access this endpoint
     public ResponseEntity<User> getUserById(@PathVariable String id, @RequestHeader("Authorization") String token) {
         // Validate token and check user role
         String username = jwtUtil.getUsernameFromToken(token);
