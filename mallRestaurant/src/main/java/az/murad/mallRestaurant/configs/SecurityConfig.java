@@ -36,7 +36,7 @@
                     .authorizeRequests()
                     .antMatchers("/api/users/guest").permitAll() // Allow unauthenticated access to create a guest user
                     .antMatchers("/api/login").permitAll() // Allow unauthenticated access to the login endpoint
-                    .antMatchers("/api/**").authenticated() // Secure other API endpoints
+                    .antMatchers("/api/**").permitAll() // Secure other API endpoints
                     .anyRequest().authenticated()
                     .and()
                     .formLogin()

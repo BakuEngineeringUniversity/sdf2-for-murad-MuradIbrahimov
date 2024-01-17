@@ -30,12 +30,13 @@ public class UserController {
     }
 
     @GetMapping
-    @PreAuthorize("hasRole('ROLE_ADMIN')")  // Example: Only users with 'ROLE_ADMIN' can access this endpoint
     public List<User> getAllUsers(@RequestHeader("Authorization") String token) {
+        // Extract the token from the Authorization header
+
         // Validate token and check user role
         String username = jwtUtil.getUsernameFromToken(token);
         User user = userService.getUserByUsername(username);
-
+        System.out.println(username);
         if (user != null && user.getRole().equals("ROLE_ADMIN")) {
             // Access granted
             logger.info("Fetching all users");
