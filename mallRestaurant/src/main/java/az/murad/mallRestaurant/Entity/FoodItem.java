@@ -24,4 +24,3 @@ public class FoodItem {
     private int time;
     private String imageUrl;
 }
-
