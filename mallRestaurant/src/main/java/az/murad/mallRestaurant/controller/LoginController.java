@@ -38,6 +38,7 @@ public class LoginController {
 
             if (user != null) {
                 String token = jwtUtil.generateToken(user.getUsername(), user.getRole());
+                String username = jwtUtil.getUsernameFromToken(token);
                 LoginResponse response = new LoginResponse("Login successful", user.getId(), token);
                 return ResponseEntity.ok(response);
             } else {
@@ -53,4 +54,5 @@ public class LoginController {
             throw new LoginFailedException("Exception: " + e.getMessage());
         }
     }
+
 }

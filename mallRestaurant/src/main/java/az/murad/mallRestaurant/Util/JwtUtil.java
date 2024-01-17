@@ -47,10 +47,15 @@ public class JwtUtil {
             throw new RuntimeException("Error decoding JWT token");
         }
     }
-
     public void addToBlacklist(String token) {
-        tokenBlacklist.add(token);
+        if (!isTokenBlacklisted(token)) {
+            tokenBlacklist.add(token);
+            System.out.println("Token added to blacklist: " + token);
+        } else {
+            System.out.println("Token already blacklisted: " + token);
+        }
     }
+
 
     public boolean isTokenBlacklisted(String token) {
         return tokenBlacklist.contains(token);
