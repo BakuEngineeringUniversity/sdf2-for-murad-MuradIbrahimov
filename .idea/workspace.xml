@@ -6,12 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="099ea5ea-eb5f-4aa3-a53b-5e351adde2bc" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/mall.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/mall.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logs/mymall.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/mymall.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mallRestaurant/src/main/java/az/murad/mallRestaurant/configs/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/mallRestaurant/src/main/java/az/murad/mallRestaurant/configs/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mallRestaurant/src/main/java/az/murad/mallRestaurant/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/mallRestaurant/src/main/java/az/murad/mallRestaurant/controller/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mallRestaurant/src/main/java/az/murad/mallRestaurant/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/mallRestaurant/src/main/java/az/murad/mallRestaurant/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mallRestaurant/src/main/resources/logback-spring.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mallRestaurant/src/main/resources/logback-spring.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mallRestaurant/src/main/java/az/murad/mallRestaurant/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/mallRestaurant/src/main/java/az/murad/mallRestaurant/services/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mallRestaurant/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/mallRestaurant/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +73,7 @@
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/User/OneDrive/Documents/GitHub/restaurant-management-system-tdonuk",
+    "last_opened_file_path": "C:/Users/User/OneDrive/Desktop/working/sdf2-for-murad-MuradIbrahimov-main",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -124,7 +122,8 @@
       <workItem from="1705426189674" duration="728000" />
       <workItem from="1705429663146" duration="7103000" />
       <workItem from="1705439454710" duration="2787000" />
-      <workItem from="1705477871057" duration="6665000" />
+      <workItem from="1705477871057" duration="7336000" />
+      <workItem from="1705495778859" duration="2772000" />
     </task>
     <servers />
   </component>

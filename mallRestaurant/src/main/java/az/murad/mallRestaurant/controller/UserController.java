@@ -123,4 +123,47 @@ public class UserController {
             throw new AccessDeniedException("Access denied");
         }
     }
+    @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity<User> updateUser(@PathVariable String id, @RequestBody User updatedUser,
+                                           @RequestHeader("Authorization") String token) {
+        // Validate token and check user role
+        String username = jwtUtil.getUsernameFromToken(token);
+        User adminUser = userService.getUserByUsername(username);
+
+        if (adminUser != null && adminUser.getRole().equals("ROLE_ADMIN")) {
+            // Access granted
+
+            // Ensure the ID in the path matches the ID in the request body
+            if (!id.equals(updatedUser.getId())) {
+                logger.warn("Mismatched IDs in path and request body");
+                return ResponseEntity.badRequest().build();
+            }
+
+            // Fetch the existing user
+            User existingUser = userService.getUserById(id);
+
+            if (existingUser != null) {
+                // Update properties
+                existingUser.setUsername(updatedUser.getUsername());
+                existingUser.setPassword(updatedUser.getPassword());
+                existingUser.setEmail(updatedUser.getEmail());
+                existingUser.setRole(updatedUser.getRole());
+                existingUser.setIsGuest(updatedUser.isGuest());
+
+                // Save the updated user
+                User updatedUserEntity = userService.updateUser(existingUser);
+
+                logger.info("User updated with id {}", id);
+                return ResponseEntity.ok(updatedUserEntity);
+            } else {
+                logger.warn("User not found with id {}", id);
+                return ResponseEntity.notFound().build();
+            }
+        } else {
+            // Access denied
+            logger.warn("Access denied for user: {}", username);
+            throw new AccessDeniedException("Access denied");
+        }
+    }
 }

@@ -53,7 +53,7 @@ public class UserService implements UserDetailsService {
 
     // Create a new user
     public User createUser(User newUser) {
-        newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
+
         return userRepository.save(newUser);
     }
 
@@ -66,6 +66,10 @@ public class UserService implements UserDetailsService {
         guestUser.setIsGuest(true);
 
         return userRepository.save(guestUser);
+    }
+    public User updateUser(User updatedUser) {
+        // Perform validation or additional logic if needed
+        return userRepository.save(updatedUser);
     }
 
     // Delete a user by ID
