@@ -9,6 +9,8 @@ import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Component
 public class JwtUtil {
@@ -17,6 +19,9 @@ public class JwtUtil {
     private long expirationMs;
 
     private final SecretKey secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS512);
+
+    // Token blacklist
+    private final Set<String> tokenBlacklist = new HashSet<>();
 
     public String generateToken(String username, String password) {
         return Jwts.builder()
@@ -43,5 +48,11 @@ public class JwtUtil {
         }
     }
 
+    public void addToBlacklist(String token) {
+        tokenBlacklist.add(token);
+    }
 
+    public boolean isTokenBlacklisted(String token) {
+        return tokenBlacklist.contains(token);
+    }
 }

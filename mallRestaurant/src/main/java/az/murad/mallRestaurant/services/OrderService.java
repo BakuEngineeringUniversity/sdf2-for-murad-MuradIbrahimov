@@ -20,11 +20,18 @@ public class OrderService {
 
     public Order placeOrder(Order order) {
         // Validate the order and update total cost
-        double totalCost = order.getFoodItem().getCost() * order.getQuantity();
-        order.setTotalCost(totalCost);
+        String foodItemId = order.getFoodItemId();
+        FoodItem foodItem = foodService.getFoodItemById(foodItemId);
 
-        // Save the order
-        return orderRepository.save(order);
+        if (foodItem != null) {
+            double totalCost = foodItem.getCost() * order.getQuantity();
+            order.setTotalCost(totalCost);
+
+            // Save the order
+            return orderRepository.save(order);
+        } else {
+            throw new RuntimeException("FoodItem not found with id: " + foodItemId);
+        }
     }
 
     public Order updateOrderStatus(String id, String status) {
