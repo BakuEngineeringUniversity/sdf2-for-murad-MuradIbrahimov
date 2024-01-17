@@ -4,20 +4,25 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
-
-import java.util.List;
-
+import org.springframework.data.mongodb.core.mapping.Document;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Document(collection = "orders")
 public class Order {
 
     @Id
     private String id;
-    private String userId; // ID of the user placing the order
-    private List<FoodItem> foodItems; // List of food items in the order
+
+    private User user; // Reference to the user who placed the order
+    private FoodItem foodItem; // Reference to the ordered food item
+    private String restaurantName; // Restaurant name
+    private int quantity; // Quantity of the ordered food item
     private String status; // Order status (accepted, canceled, preparing, waiting)
     private double totalCost; // Total cost of the order
 
-    // Additional fields, getters, and setters
+    public void setTotalCost(double totalCost) {
+        this.totalCost = totalCost;
+    }
+    // Additional order attributes, getters, and setters
 }

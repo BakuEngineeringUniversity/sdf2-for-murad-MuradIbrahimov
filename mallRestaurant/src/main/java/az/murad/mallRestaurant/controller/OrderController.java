@@ -53,4 +53,10 @@ public class OrderController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @GetMapping("/restaurant/{restaurantName}")
+    public List<Order> getOrdersByRestaurant(@PathVariable String restaurantName) {
+        // Retrieve orders by restaurant name
+        return orderService.getOrdersByRestaurant(restaurantName);
+    }
 }

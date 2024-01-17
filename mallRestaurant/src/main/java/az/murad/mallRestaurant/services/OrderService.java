@@ -2,6 +2,7 @@ package az.murad.mallRestaurant.services;
 
 import az.murad.mallRestaurant.Entity.FoodItem;
 import az.murad.mallRestaurant.Entity.Order;
+import az.murad.mallRestaurant.repository.OrderRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,9 +20,7 @@ public class OrderService {
 
     public Order placeOrder(Order order) {
         // Validate the order and update total cost
-        double totalCost = order.getFoodItems().stream()
-                .mapToDouble(FoodItem::getCost)
-                .sum();
+        double totalCost = order.getFoodItem().getCost() * order.getQuantity();
         order.setTotalCost(totalCost);
 
         // Save the order
@@ -48,6 +47,10 @@ public class OrderService {
         // Retrieve order by ID
         return orderRepository.findById(id)
                 .orElse(null);
+    }
+
+    public List<Order> getOrdersByRestaurant(String restaurantName) {
+        return orderRepository.findByRestaurantName(restaurantName);
     }
 
     // Additional methods...
