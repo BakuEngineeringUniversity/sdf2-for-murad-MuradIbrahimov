@@ -39,32 +39,44 @@ public class OrderController {
     }
 
     @PutMapping("/{id}/status")
-    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_RESTAURANT')")
-    public ResponseEntity<Order> updateOrderStatus(@PathVariable String id, @RequestBody String status,
+    public ResponseEntity<Order> updateOrderStatus(@PathVariable String id, @RequestBody Order updatedOrder,
                                                    @RequestHeader("Authorization") String token) {
-        String username = jwtUtil.getUsernameFromToken(token);
-        User user = userService.getUserByUsername(username);
-        // Check if the user has the required role and authentication is not null
-        if (user != null && user.getRole().equals("ROLE_RESTAURANT")) {
-            // Update order status (for admins and restaurants)
-            Order updatedOrder = orderService.updateOrderStatus(id, status);
-            if (updatedOrder != null) {
-                return ResponseEntity.ok(updatedOrder);
+        try {
+            // Validate token and check user role
+            String username = jwtUtil.getUsernameFromToken(token);
+            User user = userService.getUserByUsername(username);
+
+            if (user != null && (user.getRole().equals("ROLE_RESTAURANT") || user.getRole().equals("ROLE_ADMIN"))) {
+                // Access granted
+                String updatedStatus = updatedOrder.getStatus();
+
+                // Update order status
+                Order existingOrder = orderService.updateOrderStatus(id, updatedStatus);
+
+                if (existingOrder != null) {
+                    return ResponseEntity.ok(existingOrder);
+                } else {
+                    return ResponseEntity.notFound().build();
+                }
             } else {
-                return ResponseEntity.notFound().build();
+                // Access denied
+                throw new AccessDeniedException("Access denied");
             }
-        } else {
-            throw new AccessDeniedException("Access denied");
+        } catch (Exception e) {
+            // Log and handle exceptions
+            throw new RuntimeException("Error updating order status", e);
         }
     }
 
+
+
     @GetMapping
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_RESTAURANT')")
     public List<Order> getAllOrders(@RequestHeader("Authorization") String token) {
         String username = jwtUtil.getUsernameFromToken(token);
         User user = userService.getUserByUsername(username);
         // Check if the user has the required role and authentication is not null
-        if (user != null && user.getRole().equals("ROLE_RESTAURANT")) {
+        if (user != null && user.getRole().equals("ROLE_RESTAURANT") || user.getRole().equals("ROLE_ADMIN")) {
             // Retrieve all orders (only for admins)
             return orderService.getAllOrders();
         } else {
@@ -90,7 +102,7 @@ public class OrderController {
         User user = userService.getUserByUsername(username);
 
         // Check if the user has the required role and authentication is not null
-        if (user != null && user.getRole().equals("ROLE_RESTAURANT")) {
+        if (user != null && user.getRole().equals("ROLE_RESTAURANT") || user.getRole().equals("ROLE_ADMIN")) {
             // Check if the authenticated user matches the requested restaurant
             if (!user.getUsername().equals(restaurantName)) {
                 throw new AccessDeniedException("Access denied");
