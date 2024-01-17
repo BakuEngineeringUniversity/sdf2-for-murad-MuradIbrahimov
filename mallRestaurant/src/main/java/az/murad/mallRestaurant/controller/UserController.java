@@ -2,9 +2,12 @@ package az.murad.mallRestaurant.controller;
 
 import az.murad.mallRestaurant.Util.JwtUtil;
 import az.murad.mallRestaurant.Entity.User;
+import az.murad.mallRestaurant.exception.InvalidTokenException;
+import az.murad.mallRestaurant.exception.LoginFailedException;
 import az.murad.mallRestaurant.services.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -30,25 +33,33 @@ public class UserController {
     }
 
     @GetMapping
-    public List<User> getAllUsers(@RequestHeader("Authorization") String token) {
-        // Extract the token from the Authorization header
+    public ResponseEntity<List<User>> getAllUsers(@RequestHeader("Authorization") String token) {
+        try {
+            // Validate token and check user role
+            String username = jwtUtil.getUsernameFromToken(token);
+            User user = userService.getUserByUsername(username);
 
-        // Validate token and check user role
-        String username = jwtUtil.getUsernameFromToken(token);
-        User user = userService.getUserByUsername(username);
-        System.out.println(username);
-        if (user != null && user.getRole().equals("ROLE_ADMIN")) {
-            // Access granted
-            logger.info("Fetching all users");
-            List<User> users = userService.getAllUsers();
-            logger.info("Fetched {} users", users.size());
-            return users;
-        } else {
-            // Access denied
-            logger.warn("Access denied for user: {}", username);
-            throw new AccessDeniedException("Access denied");
+            if (user != null && user.getRole().equals("ROLE_ADMIN")) {
+                // Access granted
+                logger.info("Fetching all users");
+                List<User> users = userService.getAllUsers();
+                logger.info("Fetched {} users", users.size());
+                return ResponseEntity.ok(users);
+            } else {
+                // Access denied
+                logger.warn("Access denied for user: {}", username);
+                throw new AccessDeniedException("Access denied");
+            }
+        } catch (Exception e) {
+            // Handle other exceptions
+            logger.error("Error during processing", e);
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
     }
+
+
+
+
 
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")  // Example: Only users with 'ROLE_USER' can access this endpoint

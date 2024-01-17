@@ -3,6 +3,7 @@ package az.murad.mallRestaurant.controller;
 import az.murad.mallRestaurant.Entity.Order;
 import az.murad.mallRestaurant.Entity.User;
 import az.murad.mallRestaurant.Util.JwtUtil;
+import az.murad.mallRestaurant.exception.LoginFailedException;
 import az.murad.mallRestaurant.services.OrderService;
 import az.murad.mallRestaurant.services.UserService;
 import org.springframework.http.ResponseEntity;
@@ -105,7 +106,7 @@ public class OrderController {
         if (user != null && user.getRole().equals("ROLE_RESTAURANT") || user.getRole().equals("ROLE_ADMIN")) {
             // Check if the authenticated user matches the requested restaurant
             if (!user.getUsername().equals(restaurantName)) {
-                throw new AccessDeniedException("Access denied");
+                throw new LoginFailedException("Access denied");
             }
 
             // Retrieve orders for the specified restaurant
