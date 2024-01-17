@@ -1,4 +1,6 @@
 package az.murad.mallRestaurant.configs;
+
+import az.murad.mallRestaurant.services.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -6,44 +8,45 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.User.UserBuilder;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Bean
-    public UserDetailsService userDetailsService() {
-        // Create an in-memory user for testing purposes
-        UserBuilder users = org.springframework.security.core.userdetails.User.withDefaultPasswordEncoder();
-        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-        manager.createUser(users.username("testuser").password("testpassword").roles("USER").build());
-        return manager;
+    private final UserService userService;
+
+    public SecurityConfig(UserService userService) {
+        this.userService = userService;
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService());
+        auth.userDetailsService(userDetailsService()).passwordEncoder(passwordEncoder());
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/api/**").permitAll() // Allow unauthenticated access to this endpoint
+        http.csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/api/users/guest").permitAll() // Allow unauthenticated access to create guest user
+                .antMatchers("/api/**").authenticated() // Secure other API endpoints
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .and()
-                .httpBasic()
-                .and()
-                .csrf().disable(); // Disable CSRF for simplicity (not recommended in production)
+                .httpBasic();
+    }
+
+    @Bean
+    @Override
+    public UserDetailsService userDetailsService() {
+        return userService::getUserByUsername;
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return NoOpPasswordEncoder.getInstance();
+        return new BCryptPasswordEncoder();
     }
 }

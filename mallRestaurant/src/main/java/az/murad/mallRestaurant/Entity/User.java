@@ -18,5 +18,7 @@ public class User {
     private String email;
 
     private String role;
+    private boolean isGuest; // New field
+
     // Additional user attributes, getters, and setters
 }

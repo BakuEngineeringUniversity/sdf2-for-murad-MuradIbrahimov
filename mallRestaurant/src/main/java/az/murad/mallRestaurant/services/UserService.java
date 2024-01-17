@@ -6,6 +6,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class UserService {
@@ -36,6 +37,17 @@ public class UserService {
         // Encode the password before saving to the database
         newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
         return userRepository.save(newUser);
+    }
+
+    public User createGuestUser() {
+        User guestUser = new User();
+        guestUser.setUsername("guest_" + UUID.randomUUID().toString());
+        guestUser.setPassword(passwordEncoder.encode("guest_password")); // You should handle password more securely
+        guestUser.setRole("ROLE_GUEST");
+        guestUser.setIsGuest(true);
+
+        // Save the user to the database
+        return userRepository.save(guestUser);
     }
 
     // Additional methods...

@@ -50,7 +50,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasRole('ROLE_USER')")  // Example: Only users with 'ROLE_USER' can access this endpoint
+    @PreAuthorize("hasRole('ROLE_USER2')")  // Example: Only users with 'ROLE_USER' can access this endpoint
     public ResponseEntity<User> getUserById(@PathVariable String id, @RequestHeader("Authorization") String token) {
         // Validate token and check user role
         String username = jwtUtil.getUsernameFromToken(token);
@@ -73,6 +73,13 @@ public class UserController {
             throw new AccessDeniedException("Access denied");
         }
     }
+    @PostMapping("/guest")
+    public ResponseEntity<User> createGuestUser() {
+        User guestUser = userService.createGuestUser();
+        logger.info("Guest user created with id {}", guestUser.getId());
+        return new ResponseEntity<>(guestUser, CREATED);
+    }
+
 
     @PostMapping
     @PreAuthorize("hasRole('ROLE_ADMIN')")
