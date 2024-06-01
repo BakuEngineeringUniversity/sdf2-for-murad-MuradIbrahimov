@@ -1,3 +1,5 @@
+// FoodService.java
+
 package az.murad.mallRestaurant.services;
 
 import az.murad.mallRestaurant.Entity.FoodItem;
@@ -10,7 +12,6 @@ import java.util.List;
 public class FoodService {
 
     private final FoodRepository foodRepository;
-
 
     public FoodService(FoodRepository foodRepository) {
         this.foodRepository = foodRepository;
@@ -34,26 +35,29 @@ public class FoodService {
                 .orElseThrow(() -> new RuntimeException("Food not found with id: " + id));
 
         // Apply updates only to non-null fields
-        if (updatedFoodItem.getName() != null) {
-            existingFoodItem.setName(updatedFoodItem.getName());
+        if (updatedFoodItem.getTitle() != null) {
+            existingFoodItem.setTitle(updatedFoodItem.getTitle());
         }
         if (updatedFoodItem.getRestaurantName() != null) {
             existingFoodItem.setRestaurantName(updatedFoodItem.getRestaurantName());
         }
-        if (updatedFoodItem.getCost() != 0) {
-            existingFoodItem.setCost(updatedFoodItem.getCost());
+        if (updatedFoodItem.getPrice() != 0) {
+            existingFoodItem.setPrice(updatedFoodItem.getPrice());
         }
         if (updatedFoodItem.getStar() != 0) {
             existingFoodItem.setStar(updatedFoodItem.getStar());
         }
-        if (updatedFoodItem.getTime() != 0) {
-            existingFoodItem.setTime(updatedFoodItem.getTime());
+        if (updatedFoodItem.getTimeValue() != 0) {
+            existingFoodItem.setTimeValue(updatedFoodItem.getTimeValue());
         }
-        if (updatedFoodItem.getCategory() != null) {
-            existingFoodItem.setCategory(updatedFoodItem.getCategory());
+        if (updatedFoodItem.getCategoryId() != 0) {
+            existingFoodItem.setCategoryId(updatedFoodItem.getCategoryId());
         }
-        if (updatedFoodItem.getImageUrl() != null) {
-            existingFoodItem.setImageUrl(updatedFoodItem.getImageUrl());
+        if (updatedFoodItem.getImagePath() != null) {
+            existingFoodItem.setImagePath(updatedFoodItem.getImagePath());
+        }
+        if (updatedFoodItem.getDescription() != null) {
+            existingFoodItem.setDescription(updatedFoodItem.getDescription());
         }
 
         // Save the updated food item
@@ -66,6 +70,8 @@ public class FoodService {
         foodRepository.deleteById(id);
     }
 
-
+    public List<FoodItem> getBestFoodItems() {
+        return foodRepository.findByBestFood(true);
+    }
     // Additional methods...
 }

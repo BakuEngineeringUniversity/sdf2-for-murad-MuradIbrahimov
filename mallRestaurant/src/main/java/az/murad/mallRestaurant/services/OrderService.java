@@ -24,7 +24,7 @@ public class OrderService {
         FoodItem foodItem = foodService.getFoodItemById(foodItemId);
 
         if (foodItem != null) {
-            double totalCost = foodItem.getCost() * order.getQuantity();
+            double totalCost = foodItem.getPrice() * order.getQuantity();
             order.setTotalCost(totalCost);
 
             // Save the order

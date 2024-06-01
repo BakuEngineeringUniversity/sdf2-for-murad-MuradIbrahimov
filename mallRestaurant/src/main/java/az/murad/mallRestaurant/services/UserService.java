@@ -1,6 +1,7 @@
 package az.murad.mallRestaurant.services;
 
 import az.murad.mallRestaurant.Entity.User;
+import az.murad.mallRestaurant.Util.JwtUtil;
 import az.murad.mallRestaurant.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -57,7 +58,9 @@ public class UserService implements UserDetailsService {
         return userRepository.save(newUser);
     }
 
-    // Create a guest user
+    @Autowired
+    private JwtUtil jwtUtil;
+
     public User createGuestUser() {
         User guestUser = new User();
         guestUser.setUsername("guest_" + UUID.randomUUID().toString());
@@ -65,7 +68,23 @@ public class UserService implements UserDetailsService {
         guestUser.setRole("ROLE_GUEST");
         guestUser.setIsGuest(true);
 
+        // Generate a random email for the guest user
+        String randomEmail = generateRandomEmail();
+        guestUser.setEmail(randomEmail);
+
+
+
         return userRepository.save(guestUser);
+    }
+
+    private String generateRandomEmail() {
+        // Logic to generate a random email (replace it with your own logic)
+        return "guest_" + UUID.randomUUID().toString() + "@example.com";
+    }
+
+    private String generateTokenForGuestUser(User guestUser) {
+        // Generate a token for the guest user similar to the regular login
+        return jwtUtil.generateToken(guestUser.getUsername(), guestUser.getRole());
     }
     public User updateUser(User updatedUser) {
         // Perform validation or additional logic if needed

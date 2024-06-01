@@ -1,10 +1,10 @@
-package az.murad.mallRestaurant.Entity;
+        package az.murad.mallRestaurant.Entity;
 
-import lombok.Data;
+        import lombok.Data;
 
-@Data
-public class LoginRequest {
+        @Data
+        public class LoginRequest {
 
-    private String email;
-    private String password;
-}
+            private String email;
+            private String password;
+        }

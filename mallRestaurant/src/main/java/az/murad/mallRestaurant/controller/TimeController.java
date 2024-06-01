@@ -1,11 +1,11 @@
-// FoodController.java
+// TimeController.java
 
 package az.murad.mallRestaurant.controller;
 
-import az.murad.mallRestaurant.Entity.FoodItem;
+import az.murad.mallRestaurant.Entity.Time;
 import az.murad.mallRestaurant.Entity.User;
 import az.murad.mallRestaurant.Util.JwtUtil;
-import az.murad.mallRestaurant.services.FoodService;
+import az.murad.mallRestaurant.services.TimeService;
 import az.murad.mallRestaurant.services.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,56 +20,56 @@ import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
 
 @RestController
-@RequestMapping("/api/foods")
-public class FoodController {
+@RequestMapping("/api/times")
+public class TimeController {
 
-    private final FoodService foodService;
+    private final TimeService timeService;
     private final UserService userService;
     private final JwtUtil jwtUtil;
-    private static final Logger logger = LoggerFactory.getLogger(FoodController.class);
+    private static final Logger logger = LoggerFactory.getLogger(TimeController.class);
 
     @Autowired
-    public FoodController(FoodService foodService, UserService userService, JwtUtil jwtUtil) {
-        this.foodService = foodService;
+    public TimeController(TimeService timeService, UserService userService, JwtUtil jwtUtil) {
+        this.timeService = timeService;
         this.userService = userService;
         this.jwtUtil = jwtUtil;
     }
 
     @GetMapping
-    public List<FoodItem> getFoods() {
+    public List<Time> getTimes() {
         // Validate token and check user role
-        logger.info("Fetching all food items");
-        List<FoodItem> foodItems = foodService.getAllFoodItems();
-        logger.info("Fetched {} food items", foodItems.size());
-        return foodItems;
+        logger.info("Fetching all times");
+        List<Time> times = timeService.getAllTimes();
+        logger.info("Fetched {} times", times.size());
+        return times;
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<FoodItem> getFoodItemById(@PathVariable String id) {
+    public ResponseEntity<Time> getTimeById(@PathVariable String id) {
         // Validate token and check user role
-        logger.info("Fetching food item with id {}", id);
-        FoodItem foodItem = foodService.getFoodItemById(id);
-        if (foodItem != null) {
-            logger.info("Food item found with id {}", id);
-            return ResponseEntity.ok(foodItem);
+        logger.info("Fetching time with id {}", id);
+        Time time = timeService.getTimeById(id);
+        if (time != null) {
+            logger.info("Time found with id {}", id);
+            return ResponseEntity.ok(time);
         } else {
-            logger.warn("Food item not found with id {}", id);
+            logger.warn("Time not found with id {}", id);
             return ResponseEntity.notFound().build();
         }
     }
 
     @PostMapping
-    public ResponseEntity<FoodItem> createFoodItem(@RequestBody FoodItem foodItem, @RequestHeader("Authorization") String token) {
+    public ResponseEntity<Time> createTime(@RequestBody Time time, @RequestHeader("Authorization") String token) {
         // Validate token and check user role
         String username = jwtUtil.getUsernameFromToken(token);
         User user = userService.getUserByUsername(username);
 
         // Check if the user has the required role and authentication is not null
         if (user != null && (user.getRole().equals("ROLE_RESTAURANT") || user.getRole().equals("ROLE_ADMIN"))) {
-            logger.info("Creating a new food item");
-            FoodItem createdFoodItem = foodService.createFoodItem(foodItem);
-            logger.info("Food item created with id {}", createdFoodItem.getId());
-            return new ResponseEntity<>(createdFoodItem, CREATED);
+            logger.info("Creating a new time");
+            Time createdTime = timeService.createTime(time);
+            logger.info("Time created with id {}", createdTime.getId());
+            return new ResponseEntity<>(createdTime, CREATED);
         } else {
             logger.warn("Access denied for user: {}", username);
             throw new AccessDeniedException("Access denied");
@@ -77,20 +77,20 @@ public class FoodController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<FoodItem> updateFoodItem(@PathVariable String id, @RequestBody FoodItem updatedFoodItem, @RequestHeader("Authorization") String token) {
+    public ResponseEntity<Time> updateTime(@PathVariable String id, @RequestBody Time updatedTime, @RequestHeader("Authorization") String token) {
         // Validate token and check user role
         String username = jwtUtil.getUsernameFromToken(token);
         User user = userService.getUserByUsername(username);
 
         // Check if the user has the required role and authentication is not null
         if (user != null && (user.getRole().equals("ROLE_RESTAURANT") || user.getRole().equals("ROLE_ADMIN"))) {
-            logger.info("Updating food item with id {}", id);
-            FoodItem updated = foodService.updateFoodItem(id, updatedFoodItem);
+            logger.info("Updating time with id {}", id);
+            Time updated = timeService.updateTime(id, updatedTime);
             if (updated != null) {
-                logger.info("Food item updated with id {}", id);
+                logger.info("Time updated with id {}", id);
                 return ResponseEntity.ok(updated);
             } else {
-                logger.warn("Food item not found for update with id {}", id);
+                logger.warn("Time not found for update with id {}", id);
                 return ResponseEntity.notFound().build();
             }
         } else {
@@ -100,28 +100,20 @@ public class FoodController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteFoodItem(@PathVariable String id, @RequestHeader("Authorization") String token) {
+    public ResponseEntity<Void> deleteTime(@PathVariable String id, @RequestHeader("Authorization") String token) {
         // Validate token and check user role
         String username = jwtUtil.getUsernameFromToken(token);
         User user = userService.getUserByUsername(username);
 
         // Check if the user has the required role and authentication is not null
         if (user != null && (user.getRole().equals("ROLE_RESTAURANT") || user.getRole().equals("ROLE_ADMIN"))) {
-            logger.info("Deleting food item with id {}", id);
-            foodService.deleteFoodItem(id);
-            logger.info("Food item deleted with id {}", id);
+            logger.info("Deleting time with id {}", id);
+            timeService.deleteTime(id);
+            logger.info("Time deleted with id {}", id);
             return new ResponseEntity<>(OK);
         } else {
             logger.warn("Access denied for user: {}", username);
             throw new AccessDeniedException("Access denied");
         }
-    }
-    @GetMapping("/best-foods")
-    public List<FoodItem> getBestFoods() {
-        // Validate token and check user role
-        logger.info("Fetching best food items");
-        List<FoodItem> bestFoodItems = foodService.getBestFoodItems();
-        logger.info("Fetched {} best food items", bestFoodItems.size());
-        return bestFoodItems;
     }
 }

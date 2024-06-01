@@ -117,22 +117,13 @@ public class UserController {
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")  // Example: Only users with 'ROLE_ADMIN' can access this endpoint
-    public ResponseEntity<Void> deleteUser(@PathVariable String id, @RequestHeader("Authorization") String token) {
+    public ResponseEntity<Void> deleteUser(@PathVariable String id) {
         // Validate token and check user role
-        String username = jwtUtil.getUsernameFromToken(token);
-        User user = userService.getUserByUsername(username);
-
-        if (user != null && user.getRole().equals("ROLE_ADMIN")) {
-            // Access granted
             logger.info("Deleting user with id {}", id);
             userService.deleteUser(id);
             logger.info("User deleted with id {}", id);
             return new ResponseEntity<>(OK);
-        } else {
-            // Access denied
-            logger.warn("Access denied for user: {}", username);
-            throw new AccessDeniedException("Access denied");
-        }
+
     }
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")

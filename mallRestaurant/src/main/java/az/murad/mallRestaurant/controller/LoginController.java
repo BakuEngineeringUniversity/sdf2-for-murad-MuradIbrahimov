@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 @RestController
 @RequestMapping("/api/login")
 public class LoginController {
@@ -39,7 +38,7 @@ public class LoginController {
             if (user != null) {
                 String token = jwtUtil.generateToken(user.getUsername(), user.getRole());
                 String username = jwtUtil.getUsernameFromToken(token);
-                LoginResponse response = new LoginResponse("Login successful", user.getId(), token);
+                LoginResponse response = new LoginResponse("Login successful", user.getId(), token, user.getRole(), user.getEmail());
                 return ResponseEntity.ok(response);
             } else {
                 logger.warn("User not found or invalid credentials for login request: {}", loginRequest.getEmail());
@@ -54,5 +53,4 @@ public class LoginController {
             throw new LoginFailedException("Exception: " + e.getMessage());
         }
     }
-
 }
